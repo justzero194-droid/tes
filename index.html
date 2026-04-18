@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>🐳 Cyne Shop | Mythic Pets Pricelist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0f1e 0%, #0c1222 100%);
+            font-family: 'Inter', sans-serif;
+            padding: 2rem 1.5rem;
+            color: #eef5ff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .badge-update {
+            background: rgba(0, 255, 255, 0.12);
+            backdrop-filter: blur(6px);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.6rem;
+            border-radius: 80px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+        }
+
+        .badge-update i {
+            color: #2dd4bf;
+            font-size: 1.1rem;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #93c5fd, #2dd4bf);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .shop-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            background: linear-gradient(120deg, #c084fc, #60a5fa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+            margin-top: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-top: 1px dashed #2d3a5e;
+            padding-top: 8px;
+        }
+
+        .sub {
+            font-size: 1rem;
+            color: #9ca3cf;
+            border-bottom: 1px dashed #2d3a5e;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 2rem 0 1.2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 5px solid #2dd4bf;
+            padding-left: 20px;
+        }
+
+        .section-title i {
+            color: #2dd4bf;
+            font-size: 1.6rem;
+        }
+
+        .grid-pets {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .pet-card {
+            background: rgba(18, 25, 45, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            padding: 1.4rem 1.4rem 1.6rem 1.4rem;
+            transition: all 0.25s ease;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .pet-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(45, 212, 191, 0.6);
+            box-shadow: 0 20px 30px -12px rgba(0, 255, 255, 0.15);
+            background: rgba(22, 32, 55, 0.85);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed rgba(255,255,255,0.15);
+            padding-bottom: 8px;
+        }
+
+        .pet-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            background: linear-gradient(120deg, #f0f9ff, #b9e6f0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .stock-badge {
+            background: #ff4d6d20;
+            color: #ffb3c6;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 30px;
+            border: 0.5px solid #ff4d6d60;
+        }
+
+        .price-list {
+            margin-top: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        /* style untuk item harga yang bisa diklik */
+        .price-item {
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 1rem;
+            padding: 0.5rem 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .price-item:hover {
+            background: rgba(45, 212, 191, 0.2);
+            border-color: rgba(45, 212, 191, 0.5);
+            transform: scale(1.01);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .price-item:active {
+            transform: scale(0.99);
+        }
+
+        .bb-range {
+            color: #b9d0ff;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            pointer-events: none;
+        }
+
+        .bb-price {
+            font-weight: 800;
+            color: #facc15;
+            background: #1e293b;
+            padding: 0.2rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            pointer-events: none;
+        }
+
+        .note {
+            font-size: 0.7rem;
+            color: #7e8ba3;
+            margin-top: 0.8rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .note i {
+            font-size: 0.7rem;
+            color: #2dd4bf;
+        }
+
+        .other-section {
+            margin-top: 3rem;
+            background: linear-gradient(135deg, #0e162b, #070b17);
+            border-radius: 2rem;
+            padding: 1.8rem;
+            border: 1px solid #2a345a;
+        }
+
+        .other-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .other-item {
+            background: #0f1629;
+            border-radius: 1.5rem;
+            padding: 0.8rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 1px solid #1f2a46;
+            cursor: pointer;
+        }
+
+        .other-item:hover {
+            background: #1a2340;
+            border-color: #facc1560;
+            transform: translateX(4px);
+        }
+
+        .other-item span:first-child {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .other-price {
+            color: #facc15;
+            font-weight: 800;
+            background: #00000040;
+            padding: 4px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #4b567e;
+            border-top: 1px solid #1e2742;
+            padding-top: 2rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .pet-name {
+                font-size: 1.3rem;
+            }
+        }
+
+        .click-hint {
+            font-size: 0.65rem;
+            text-align: center;
+            margin-top: 0.4rem;
+            color: #2dd4bfaa;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="badge-update">
+            <i class="fas fa-water"></i> 🐳 UPDATE PRICELIST 🐳
+            <i class="fas fa-store"></i> Cyne Shop
+        </div>
+        <h1><i class="fas fa-dragon"></i> Mythic Pets <span style="font-weight:400">|</span> Atlas</h1>
+        <div class="shop-name">
+            <i class="fas fa-crown"></i> CYNE SHOP <i class="fas fa-certificate"></i>
+        </div>
+        <div class="sub">✦ rekomendasi pet eksklusif & harga terbaru ✦</div>
+    </div>
+
+    <!-- 🌷 RECOMENDATION PET section -->
+    <div class="section-title">
+        <i class="fas fa-star-of-life"></i> 
+        <span>🌷 RECOMENDATION PET 🌷</span>
+    </div>
+    <div class="grid-pets" id="recommendGrid"></div>
+
+    <!-- PET LAIN (other pets) -->
+    <div class="other-section">
+        <div class="section-title" style="margin-top:0; border-left-color: #f97316;">
+            <i class="fas fa-paw"></i> 
+            <span>🐯 PET LAINNYA · SPECIAL LIST 🐯</span>
+        </div>
+        <div class="other-grid" id="otherPetsGrid"></div>
+        <div class="note" style="margin-top:1.2rem; background: none;">
+            <i class="fas fa-info-circle"></i> Harga dapat berubah sewaktu-waktu. Untuk mutasi & bobot khusus, konfirmasi langsung ke Cyne Shop.
+        </div>
+    </div>
+    <footer>
+        <i class="fab fa-whatsapp"></i> Klik pada harga/BB untuk order via WhatsApp • <i class="fas fa-shopping-cart"></i> Order via DM / chat • Terima kasih telah berbelanja di Cyne Shop 🙌
+    </footer>
+</div>
+
+<script>
+    // NOMOR WHATSAPP (gunakan format internasional tanpa '+', spasi, atau tanda kurung)
+    const WA_NUMBER = "6282299499261";  // 082299499261 -> 6282299499261
+    
+    // Data rekomendasi pet (berdasarkan pricelist)
+    const recommendPets = [
+        {
+            name: "🐺 Wolfy Poseidon",
+            note: "Harga menyesuaikan level, bobot, & mutasi",
+            prices: [
+                { range: "BB 0 - 20 kg", price: "33k - 36k" },
+                { range: "BB 21 - 25 kg", price: "37k - 42k" },
+                { range: "BB 26 - 28 kg", price: "43k - 45k" }
+            ]
+        },
+        {
+            name: "🐉 Cyber Dragon",
+            note: "fresh pet • harga pet mutasi berbeda ya",
+            prices: [
+                { range: "BB 0-10 kg", price: "25k - 28k" },
+                { range: "BB 11-25 kg", price: "30k - 33k" },
+                { range: "BB 25-29 kg", price: "35k - 45k" }
+            ]
+        },
+        {
+            name: "🔥 Phoenix",
+            note: "fresh pet • harga pet mutasi berbeda ya",
+            prices: [
+                { range: "BB 0-15 kg", price: "15k - 20k" },
+                { range: "BB 16 - 25 kg", price: "22k - 30k" },
+                { range: "BB 26 - 28 kg", price: "35k" }
+            ]
+        },
+        {
+            name: "🦄 Pegazeus Atlantean",
+            note: "Harga menyesuaikan level, bobot, & mutasi",
+            prices: [
+                { range: "BB 0 -15 kg", price: "35k - 40k" },
+                { range: "BB 16 - 25 kg", price: "45k - 55k" },
+                { range: "BB 26 - 30 kg", price: "57k - 90k" }
+            ]
+        },
+        {
+            name: "🎮 Pixel Dragon",
+            note: "Harga menyesuaikan level, bobot, & mutasi",
+            prices: [
+                { range: "BB 0 - 19kg", price: "25k - 30k" },
+                { range: "BB 20 - 24 kg", price: "33k" },
+                { range: "BB 25 - 26 kg", price: "36k" },
+                { range: "BB 27 - 28", price: "45k" }
+            ]
+        },
+        {
+            name: "✨ Cosmic Pegasus",
+            note: "STOK KOSONG • Harga menyesuaikan level, bobot, & mutasi",
+            prices: [
+                { range: "❌ Stok habis", price: "-" }
+            ],
+            emptyStock: true
+        },
+        {
+            name: "🦌 Wild King Reindeer",
+            note: "Harga menyesuaikan level, bobot, & mutasi",
+            prices: [
+                { range: "BB 0-20kg", price: "15k - 20k" },
+                { range: "BB 21 - 26", price: "25k" },
+                { range: "BB 27 - 28", price: "30k" }
+            ]
+        },
+        {
+            name: "🐅 Tiger",
+            note: "Harga pet mutasi berbeda ya",
+            prices: [
+                { range: "BB 0-20 kg", price: "2k - 9k" },
+                { range: "BB 25 - 28 kg", price: "10k - 12k" }
+            ]
+        },
+        {
+            name: "🐘 Gajah",
+            note: "Harga pet mutasi berbeda ya",
+            prices: [
+                { range: "BB 0-24kg", price: "2k - 4k" },
+                { range: "BB >25 kg", price: "6k" },
+                { range: "BB 30kg", price: "8k" }
+            ]
+        }
+    ];
+
+    // Data PET LAIN (other pets)
+    const otherPets = [
+        { name: "🦊 Cosmic Fox", price: "10k" },
+        { name: "🐼 Cyber Panda", price: "5k" },
+        { name: "🐂 Cyber bull", price: "5k/3pcs" },
+        { name: "🐕 cyber dog", price: "5k" },
+        { name: "🐈 Cyber cat", price: "2k" },
+        { name: "🐇 Wild rabbit", price: "13k" },
+        { name: "🐰 Cosmic Bunny", price: "15k" },
+        { name: "🔥 pixel Fire", price: "5k" },
+        { name: "🐂 Minotour", price: "10k" },
+        { name: "🦊 Kitsune", price: "7k" },
+        { name: "🦁 Lion", price: "5k" }
+    ];
+
+    // Fungsi untuk encode pesan WA
+    function sendToWhatsApp(petName, bbRange, priceText) {
+        // Bersihkan nama dari emoji jika ingin lebih rapi, tapi biarkan saja agar keren
+        let cleanPetName = petName;
+        // Pesan sesuai permintaan: "halo ka aku mau beli pet ini bb ini (dengan harga ...)"
+        let message = `Halo ka, aku mau beli pet *${cleanPetName}* dengan ${bbRange} (harga: ${priceText}). Terima kasih!`;
+        // encodeURIComponent untuk URL
+        let encodedMsg = encodeURIComponent(message);
+        let waUrl = `https://wa.me/${WA_NUMBER}?text=${encodedMsg}`;
+        window.open(waUrl, '_blank');
+    }
+
+    // Fungsi untuk mengirim wa untuk pet lain (tanpa bb spesifik)
+    function sendOtherPetWA(petName, price) {
+        let message = `Halo ka, aku mau beli pet *${petName}* dengan harga ${price}. Apakah masih tersedia? Terima kasih!`;
+        let encodedMsg = encodeURIComponent(message);
+        let waUrl = `https://wa.me/${WA_NUMBER}?text=${encodedMsg}`;
+        window.open(waUrl, '_blank');
+    }
+
+    // Render rekomendasi pets dengan event listener per item harga
+    const recommendGrid = document.getElementById("recommendGrid");
+
+    function buildPetCard(pet, petIndex) {
+        let priceHtml = '';
+        if (pet.prices && pet.prices.length) {
+            pet.prices.forEach((p, idx) => {
+                // Jangan buat klik jika stok kosong (Cosmic Pegasus)
+                const isDisabled = (pet.emptyStock === true) || (p.range === "❌ Stok habis");
+                let disabledAttr = '';
+                let clickHandler = '';
+                if (!isDisabled) {
+                    clickHandler = `onclick="sendToWhatsApp('${pet.name.replace(/'/g, "\\'")}', '${p.range.replace(/'/g, "\\'")}', '${p.price.replace(/'/g, "\\'")}')"`;
+                } else {
+                    clickHandler = `style="cursor: not-allowed; opacity:0.7;" onclick="return false;"`;
+                }
+                priceHtml += `
+                    <div class="price-item" ${clickHandler}>
+                        <span class="bb-range"><i class="fas fa-weight-hanging"></i> ${p.range}</span>
+                        <span class="bb-price">${p.price}</span>
+                    </div>
+                `;
+            });
+        } else {
+            priceHtml = `<div class="price-item" style="cursor:default;"><span class="bb-range">Hubungi untuk info</span><span class="bb-price">—</span></div>`;
+        }
+
+        let stockWarning = '';
+        if (pet.emptyStock) {
+            stockWarning = '<div class="stock-badge"><i class="fas fa-box-open"></i> OUT OF STOCK</div>';
+        } else {
+            stockWarning = '<div class="stock-badge"><i class="fas fa-check-circle"></i> ready</div>';
+        }
+
+        // tambahkan hint kecil agar user tau bisa klik
+        let hintHtml = (pet.emptyStock !== true) ? '<div class="click-hint"><i class="fab fa-whatsapp"></i> klik harga/BB untuk order</div>' : '';
+
+        return `
+            <div class="pet-card">
+                <div class="card-header">
+                    <div class="pet-name">${pet.name}</div>
+                    ${stockWarning}
+                </div>
+                <div class="price-list">
+                    ${priceHtml}
+                </div>
+                <div class="note">
+                    <i class="fas fa-info-circle"></i> ${pet.note}
+                </div>
+                ${hintHtml}
+            </div>
+        `;
+    }
+
+    function renderRecommendations() {
+        let cardsHtml = '';
+        recommendPets.forEach(pet => {
+            cardsHtml += buildPetCard(pet);
+        });
+        recommendGrid.innerHTML = cardsHtml;
+    }
+
+    // Render other pets dengan event klik
+    function renderOtherPets() {
+        const otherContainer = document.getElementById("otherPetsGrid");
+        let otherHtml = '';
+        otherPets.forEach(pet => {
+            // Escape nama untuk menghindari error quote
+            let escapedName = pet.name.replace(/'/g, "\\'");
+            otherHtml += `
+                <div class="other-item" onclick="sendOtherPetWA('${escapedName}', '${pet.price}')">
+                    <span><i class="fas fa-tag"></i> ${pet.name}</span>
+                    <span class="other-price">💰 ${pet.price}</span>
+                </div>
+            `;
+        });
+        otherContainer.innerHTML = otherHtml;
+    }
+
+    // Expose fungsi ke global scope agar bisa dipanggil dari onclick
+    window.sendToWhatsApp = sendToWhatsApp;
+    window.sendOtherPetWA = sendOtherPetWA;
+
+    renderRecommendations();
+    renderOtherPets();
+
+    // Validasi nomor WA (console)
+    console.log(`🐳 Cyne Shop aktif | Nomor WA: ${WA_NUMBER} | Klik pada setiap harga BB akan membuka chat otomatis`);
+</script>
+</body>
+</html>
